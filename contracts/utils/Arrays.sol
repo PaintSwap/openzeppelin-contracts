@@ -109,6 +109,7 @@ library Arrays {
      * WARNING: Only use if you are certain `pos` is lower than the array length.
      */
     function unsafeMemoryAccess(uint256[] memory arr, uint256 pos) internal pure returns (uint256 res) {
+        /// @solidity memory-safe-assembly
         assembly {
             res := mload(add(add(arr, 0x20), mul(pos, 0x20)))
         }
@@ -120,6 +121,7 @@ library Arrays {
      * WARNING: Only use if you are certain `pos` is lower than the array length.
      */
     function unsafeMemoryAccess(address[] memory arr, uint256 pos) internal pure returns (address res) {
+        /// @solidity memory-safe-assembly
         assembly {
             res := mload(add(add(arr, 0x20), mul(pos, 0x20)))
         }
