@@ -127,6 +127,7 @@ library Math {
             // variables such that product = prod1 * 2^256 + prod0.
             uint256 prod0 = x * y; // Least significant 256 bits of the product
             uint256 prod1; // Most significant 256 bits of the product
+            /// @solidity memory-safe-assembly
             assembly {
                 let mm := mulmod(x, y, not(0))
                 prod1 := sub(sub(mm, prod0), lt(mm, prod0))
@@ -151,6 +152,7 @@ library Math {
 
             // Make division exact by subtracting the remainder from [prod1 prod0].
             uint256 remainder;
+            /// @solidity memory-safe-assembly
             assembly {
                 // Compute remainder using mulmod.
                 remainder := mulmod(x, y, denominator)
@@ -164,6 +166,7 @@ library Math {
             // Always >= 1. See https://cs.stackexchange.com/q/138556/92363.
 
             uint256 twos = denominator & (0 - denominator);
+            /// @solidity memory-safe-assembly
             assembly {
                 // Divide denominator by twos.
                 denominator := div(denominator, twos)
