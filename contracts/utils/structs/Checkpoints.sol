@@ -216,7 +216,7 @@ library Checkpoints {
         Checkpoint224[] storage self,
         uint256 pos
     ) private pure returns (Checkpoint224 storage result) {
-        assembly {
+        assembly ("memory-safe") {
             mstore(0, self.slot)
             result.slot := add(keccak256(0, 0x20), pos)
         }
@@ -419,7 +419,7 @@ library Checkpoints {
         Checkpoint208[] storage self,
         uint256 pos
     ) private pure returns (Checkpoint208 storage result) {
-        assembly {
+        assembly ("memory-safe") {
             mstore(0, self.slot)
             result.slot := add(keccak256(0, 0x20), pos)
         }
@@ -622,7 +622,7 @@ library Checkpoints {
         Checkpoint160[] storage self,
         uint256 pos
     ) private pure returns (Checkpoint160 storage result) {
-        assembly {
+        assembly ("memory-safe") {
             mstore(0, self.slot)
             result.slot := add(keccak256(0, 0x20), pos)
         }
