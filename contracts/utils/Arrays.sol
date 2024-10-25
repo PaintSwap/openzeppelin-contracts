@@ -159,7 +159,7 @@ library Arrays {
      * @dev Load memory word (as a uint256) at location `ptr`.
      */
     function _mload(uint256 ptr) private pure returns (uint256 value) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             value := mload(ptr)
         }
     }
@@ -168,7 +168,7 @@ library Arrays {
      * @dev Swaps the elements memory location `ptr1` and `ptr2`.
      */
     function _swap(uint256 ptr1, uint256 ptr2) private pure {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             let value1 := mload(ptr1)
             let value2 := mload(ptr2)
             mstore(ptr1, value2)
@@ -178,14 +178,14 @@ library Arrays {
 
     /// @dev Helper: low level cast address memory array to uint256 memory array
     function _castToUint256Array(address[] memory input) private pure returns (uint256[] memory output) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             output := input
         }
     }
 
     /// @dev Helper: low level cast bytes32 memory array to uint256 memory array
     function _castToUint256Array(bytes32[] memory input) private pure returns (uint256[] memory output) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             output := input
         }
     }
@@ -194,7 +194,7 @@ library Arrays {
     function _castToUint256Comp(
         function(address, address) pure returns (bool) input
     ) private pure returns (function(uint256, uint256) pure returns (bool) output) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             output := input
         }
     }
@@ -203,7 +203,7 @@ library Arrays {
     function _castToUint256Comp(
         function(bytes32, bytes32) pure returns (bool) input
     ) private pure returns (function(uint256, uint256) pure returns (bool) output) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             output := input
         }
     }
@@ -420,7 +420,7 @@ library Arrays {
      * WARNING: Only use if you are certain `pos` is lower than the array length.
      */
     function unsafeMemoryAccess(address[] memory arr, uint256 pos) internal pure returns (address res) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             res := mload(add(add(arr, 0x20), mul(pos, 0x20)))
         }
     }
@@ -431,7 +431,7 @@ library Arrays {
      * WARNING: Only use if you are certain `pos` is lower than the array length.
      */
     function unsafeMemoryAccess(bytes32[] memory arr, uint256 pos) internal pure returns (bytes32 res) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             res := mload(add(add(arr, 0x20), mul(pos, 0x20)))
         }
     }
@@ -442,7 +442,7 @@ library Arrays {
      * WARNING: Only use if you are certain `pos` is lower than the array length.
      */
     function unsafeMemoryAccess(uint256[] memory arr, uint256 pos) internal pure returns (uint256 res) {
-        assembly ("memory safe") {
+        assembly ("memory-safe") {
             res := mload(add(add(arr, 0x20), mul(pos, 0x20)))
         }
     }
